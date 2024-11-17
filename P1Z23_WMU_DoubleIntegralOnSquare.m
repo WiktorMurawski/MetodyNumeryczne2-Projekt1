@@ -8,7 +8,7 @@ function q = P1Z23_WMU_DoubleIntegralOnSquare(f,n)
 % każdym z nich kwadratury Gaussa rzędu drugiego
 % Funkcja przyjmuje dwa argumenty:
 % f - uchwyt do funkcji
-% n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony 
+% n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
 % będzie obszar; obszar dzielony jest na 4n^2 trójkątów
 
 if(nargin < 2)
@@ -29,43 +29,55 @@ xlim([-1,1]);
 ylim([-1,1]);
 
 
-for i = 0:n-1
-    for j = 0:n-1
-        % Współrzędne wierzchołków trójkątów w ćwiartce pierwszej
-        % W pierwszej kolumnie przechowywane są kolejno x1,x2,x3
-        % W drugiej kolumnie przechowywane są kolejno y1,y2,y3
-        vertices = [
-            i/n, j/n;
-            (i+1)/n, j/n;
-            i/n, (j+1)/n;
-        ];
-        vertices2 = [
-            
-        ];
+for x = 0:n-1
+  for y = 0:n-x-1
+    % Współrzędne wierzchołków trójkątów w ćwiartce pierwszej
+    % W pierwszej kolumnie przechowywane są kolejno x1,x2,x3
+    % W drugiej kolumnie przechowywane są kolejno y1,y2,y3
+    vertices = [
+      x/n, y/n;
+      (x+1)/n, y/n;
+      x/n, (y+1)/n; 
+      ];
 
-        % Przekład trójkątów na II, III i IV ćwiartkę
-        triangles = {
-            vertices; % I ćwiartka
-            [-vertices(:,1), vertices(:,2)]; % II ćwiartka
-            [-vertices(:,1), -vertices(:,2)]; % III ćwiartka
-            [vertices(:,1), -vertices(:,2)]; % IV ćwiartka
-        };
+    % Przekład trójkątów na II, III i IV ćwiartkę
+    triangles = {
+      vertices; % I ćwiartka
+      [-vertices(:,1), vertices(:,2)]; % II ćwiartka
+      [-vertices(:,1), -vertices(:,2)]; % III ćwiartka
+      [vertices(:,1), -vertices(:,2)]; % IV ćwiartka
+      };
 
-        % Zastosowanie kwadratury na każdym z 4 trójkątów
-        for k = 1:length(triangles)
-            t = triangles{k};
-            q = q + QuadratureSS(f, ...
-              t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
-            
-            X = [t(1,1),t(2,1),t(3,1)];
-            Y = [t(1,2),t(2,2),t(3,2)];      
-            fill(X,Y,'c');
-
-            input('','s');
-
-        end
+    % Zastosowanie kwadratury na każdym z 4 trójkątów
+    for k = 1:length(triangles)
+      t = triangles{k};
+      q = q + QuadratureSW(f, ...
+        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
     end
-end
+  end % for y
 
+  for y = 0:n-x-2
+    vertices = [
+      (x+1)/n, (y+1)/n;
+      (x+1)/n, y/n;
+      x/n, (y+1)/n; 
+      ];
+
+    triangles = {
+      vertices; % I ćwiartka
+      [-vertices(:,1), vertices(:,2)]; % II ćwiartka
+      [-vertices(:,1), -vertices(:,2)]; % III ćwiartka
+      [vertices(:,1), -vertices(:,2)]; % IV ćwiartka
+      };
+
+    for k = 1:length(triangles)
+      t = triangles{k};
+      q = q + QuadratureSW(f, ...
+        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
+    end
+  end % for y
+
+
+end % for x
 
 end

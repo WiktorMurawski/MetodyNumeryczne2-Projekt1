@@ -1,0 +1,79 @@
+\documentclass[9pt]{beamer}
+\usetheme{Warsaw}
+\usefonttheme[onlymath]{serif}
+
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{amsmath}
+
+\newcommand{\n}{\newline}
+
+\linespread{1}
+
+\title{Projekt 1, Zadanie 23}
+\author{Wiktor Murawski, 333255, grupa 3, środa 12:15}
+\date{}
+
+\begin{document}
+
+    \begin{frame}
+        \frametitle{\insertauthor,\space\inserttitle}
+        \begin{spacing}{2}
+        Obliczanie całek $ \iint\limits_D f(x,y) \, dxdy $ na obszarze
+        $  D = \{(x,y) \in \mathbb{R}^2 : |x| + |y| \leq 1\} $
+        poprzez podział obszaru $ D $ na $ 4n^2 $ trójkątów przystających oraz
+        zastosowanie na każdym z nich kwadratury rzędu drugiego.
+        \end{spacing}
+    \end{frame}
+
+	\section{Testy Poprawności}
+	\begin{frame}
+		\frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
+
+        \begin{spacing}{2}
+        Obliczymy analitycznie $ I = \iint\limits_D f(x,y) \, dx dy $ gdzie
+        $ f(x,y) = ax + by + c \qquad a,b,c \in \mathbb{R}$ \n
+        Niech $ D_1 = \{(x,y) \in D : x \leq 0\} $ oraz $ D_2 = \{(x,y) \in D : x > 0\} $ \n
+        Oznaczmy $ I_1 = \iint\limits_{D_1} f(x,y) \, dx dy $, $ I_2 = \iint\limits_{D_2} f(x,y) \, dx dy $ \n
+        Wtedy $ D = D_1 \cup D_2 $ oraz $ I = I_1 + I_2 $ \n
+        $ I_1 = \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \, dy dx $ \qquad\n
+        $ I_2 = \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \, dy dx $ \n
+        \end{spacing}
+
+	\end{frame}
+
+
+    \begin{frame}
+        \frametitle{Obliczamy $I_1$ oraz $I_2$}
+        \begin{columns}
+            \begin{column}{0.6\textwidth}
+                % Lewa kolumna
+                \begin{align*}
+                    I_1 &= \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \,dydx \\
+                    I_1 &= \int\limits_{-1}^{0}\left[axy + \frac{by^2}{2} + cy\right]_{-x-1}^{x+1} \,dx \\
+                    I_1 &= \int\limits_{-1}^{0} 2ax^2 + 2ax + 2cx + 2c \,dx \\
+                    I_1 &= 2\left[ \frac{ax^3}{3} + \frac{ax^2}{2} + \frac{cx^2}{2} + cx \right]_{-1}^{0} \\
+                    I_1 &= -\frac{a}{3} + c \\
+                \end{align*}
+            \end{column}
+            \begin{column}{0.6\textwidth}
+                % Prawa kolumna
+                \begin{align*}
+                    I_2 &= \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \,dydx \\
+                    I_2 &= \int\limits_{0}^{1}\left[axy + \frac{by^2}{2} + cy\right]_{x-1}^{-x+1} \,dx \\
+                    I_2 &= \int\limits_{0}^{1} - 2ax^2 + 2ax - 2cx + 2c \,dx \\
+                    I_2 &= 2\left[ -\frac{ax^3}{3} + \frac{ax^2}{2} - \frac{cx^2}{2} + cx \right]_{0}^{1} \\
+                    I_2 &= \frac{a}{3} + c \\
+                \end{align*}
+            \end{column}
+        \end{columns}
+
+        \begin{center}
+            Ostatecznie otrzymujemy $ I = I_1 + I_2 = 2c $
+        \end{center}
+
+    \end{frame}
+
+\end{document}

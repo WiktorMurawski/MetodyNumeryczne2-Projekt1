@@ -1,0 +1,57 @@
+function q = P1Z23_WMU_DoubleIntegralOnSquare(f,n)
+% Projekt 1, Zadanie 23
+% Wiktor Murawski, 333255
+%
+% Funkcja P1Z23_WMU_DoubleIntegralOnSquare wyznacza przybliżenie całki
+% podwójnej z funkcji f(x,y) na obszarze D = {(x,y):|x|+|y|<= 1}
+% poprzez podział obszaru na 4n^2 trójkątów przystających i zastosowanie na
+% każdym z nich kwadratury Gaussa rzędu drugiego
+% Funkcja przyjmuje dwa argumenty:
+% f - uchwyt do funkcji
+% n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony 
+% będzie obszar; obszar dzielony jest na 4n^2 trójkątów
+
+% Inicjalizacja wartości całki
+q = 0;
+
+% Podział obszaru na n^2 trójkątów w każdej ćwiartce
+for i = 0:n-1
+    for j = 0:n-1
+        % Współrzędne wierzchołków małych trójkątów w ćwiartce pierwszej
+        vertices1 = [
+            i/n, j/n;
+            (i+1)/n, j/n;
+            i/n, (j+1)/n;
+        ]
+        vertices2 = [
+            (i+1)/n, j/n;
+            (i+1)/n, (j+1)/n;
+            i/n, (j+1)/n;
+        ]
+
+        % Przełóż te trójkąty na 4 ćwiartki rombu poprzez symetrię
+        triangles = {
+            vertices1;                     % I ćwiartka, trójkąt 1
+            vertices2;                     % I ćwiartka, trójkąt 2
+            [-vertices1(:,1), vertices1(:,2)];   % II ćwiartka, trójkąt 1
+            [-vertices2(:,1), vertices2(:,2)];   % II ćwiartka, trójkąt 2
+            [vertices1(:,1), -vertices1(:,2)];   % III ćwiartka, trójkąt 1
+            [vertices2(:,1), -vertices2(:,2)];   % III ćwiartka, trójkąt 2
+            [-vertices1(:,1), -vertices1(:,2)];  % IV ćwiartka, trójkąt 1
+            [-vertices2(:,1), -vertices2(:,2)];  % IV ćwiartka, trójkąt 2
+        };
+
+        % Przetwarzaj i rysuj trójkąty w każdej ćwiartce, jeśli są w obszarze D
+        for k = 1:length(triangles)
+            tri = triangles{k};
+            % Sprawdzenie, czy wierzchołki trójkąta są w obrębie rombu
+            if all(sum(abs(tri), 2) <= 1)
+                % Całkuj po trójkącie
+                q = q + QuadratureSW(f, tri(1,1), tri(1,2), tri(2,1), tri(2,2), tri(3,1), tri(3,2));
+            end
+        end
+    end
+end
+
+
+end

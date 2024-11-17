@@ -1,0 +1,2 @@
+\babel@toc {polish}{}\relax 
+\beamer@sectionintoc {1}{Testy Poprawności}{2}{0}{1}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.16)  18 NOV 2024 00:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.16)  19 NOV 2024 00:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -789,24 +789,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./P1Z23_WMU.aux)
 \openout1 = `P1Z23_WMU.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -867,7 +867,7 @@ g
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 20.
  (./P1Z23_WMU.out) (./P1Z23_WMU.out)
 \@outlinefile=\write5
 \openout5 = `P1Z23_WMU.out'.
@@ -897,35 +897,44 @@ Dictionary: translator-numbers-dictionary, Language: English
 em-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (./P1Z23_WMU.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
 
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
 
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-[1{c:/Program Files/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{
-c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.e
-nc}
+[1
 
-]
+{c:/Program Files/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:
+/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
+}]
+Overfull \hbox (23.35669pt too wide) in paragraph at lines 65--65
+ [] 
+ []
+
+
 
 [2
 
 ]
-Overfull \hbox (4.55623pt too wide) detected at line 77
+
+[3
+
+]
+Overfull \hbox (4.55623pt too wide) detected at line 111
 [][][] $[]$[][][][][][][][] $[]$[][][][][][] 
  []
 
 
 
-[3
+[4
 
 ]
 \tf@nav=\write6
@@ -943,16 +952,16 @@ LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
 Package rerunfilecheck Info: File `P1Z23_WMU.out' has not changed.
-(rerunfilecheck)             Checksum: A68E5EA50A8431FCDE5B924EB6BEA693;134.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 22975 strings out of 473361
- 446294 string characters out of 5717897
- 832658 words of memory out of 5000000
- 45596 multiletter control sequences out of 15000+600000
- 565214 words of font info for 56 fonts, out of 8000000 for 9000
+ 22989 strings out of 473361
+ 446534 string characters out of 5717897
+ 830664 words of memory out of 5000000
+ 45607 multiletter control sequences out of 15000+600000
+ 565973 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,19n,123p,401b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,123p,401b,596s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra
 /cmex9.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmmi6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/ams
@@ -964,12 +973,13 @@ e1/public/amsfonts/cm/cmsy6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy9.pfb><c:/Program Files/texlive/2024/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb><c:/Program Files/texlive/2024/te
 xmf-dist/fonts/type1/public/cm-super/sfss0500.pfb><c:/Program Files/texlive/202
-4/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb><c:/Program Files/texlive
-/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
-Output written on P1Z23_WMU.pdf (3 pages, 121389 bytes).
+4/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><c:/Program Files/texlive
+/2024/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb><c:/Program Files/tex
+live/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb>
+Output written on P1Z23_WMU.pdf (4 pages, 131274 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 8 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 205 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
+ 10 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 

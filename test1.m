@@ -13,8 +13,8 @@ functions = {
   @(x,y) x+y;
   @(x,y) 1;
   @(x,y) x + y + 1;
-  @(x,y) 3.14*x + 2.72*y + 1.62;
-  @(x,y) 0.05*x + 0.01*y + pi;
+  @(x,y) x + y + sqrt(2);
+  @(x,y) x + y + eps;
   };
 N = numel(functions);
 
@@ -41,22 +41,39 @@ err(:,2) = abs(exactValues-results(:,2));
 err(:,3) = abs(exactValues-results(:,3));
 
 % Wyświetlanie
-width = 75;
-fprintf("%-20s|%12s|%12s|%12s|%12s|\n", ...
-  "Funkcja","Wynik","n="+n(1),"n="+n(2),"n="+n(3))
-for j = 1:width-2
-  fprintf("-")
-end
-fprintf("\n")
+width = 75 - 2;
+line = [repmat('-', 1, width), newline];
+
+fprintf("%-20s| %-11s|%5s%-33s|\n", ...
+  "Funkcja","Wynik","","Wyniki uzyskane przez metodę")
+fprintf("%-20s| %-11s|%12s|%12s|%12s|\n", ...
+  "","Dokładny","n="+n(1),"n="+n(2),"n="+n(3))
+fprintf("%s",line);
+
 for i = 1:N
   fprintf("%-20s|%12g|%12g|%12g|%12g|\n", ...
-    "f(x,y) = ",exactValues(i),results(i,1),results(i,2),results(i,3));
-  fprintf("%-20s|%12g|%12g|%12g|%12g|\n", ...
-    functionNames(i),'',err(i,1),err(i,2),err(i,3));
-  for j = 1:width-2
-    fprintf("-")
-  end
-  fprintf("\n")
+    "f(x,y) = "+functionNames(i),exactValues(i),results(i,1),results(i,2),results(i,3));
+  fprintf("%s",line);
 end
+
+disp('Naciśnij dowolny klawisz aby kontynuować...');
+pause('on'); % Enable waiting for user input
+pause; % Waits until the user presses any key
+fprintf("%s%s%s",newline,line);
+
+fprintf("%-20s| %-11s|%10s%-28s|\n", ...
+  "Funkcja","Wynik","","Błędy bezwzględne")
+fprintf("%-20s| %-11s|%12s|%12s|%12s|\n", ...
+  "","Dokładny","n="+n(1),"n="+n(2),"n="+n(3))
+fprintf("%s",line);
+
+for i = 1:N
+  fprintf("%-20s|%12g|%12g|%12g|%12g|\n", ...
+    "f(x,y) = "+functionNames(i),exactValues(i),err(i,1),err(i,2),err(i,3));
+  fprintf("%s",line);
+end
+
+
+ERR = exactValues(5)-sqrt(2)*2
 
 end % function

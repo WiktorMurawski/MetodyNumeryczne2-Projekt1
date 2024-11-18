@@ -16,6 +16,7 @@
 \author{Wiktor Murawski, 333255, grupa 3, środa 12:15}
 \date{}
 
+
 \begin{document}
 
     \begin{frame}
@@ -28,7 +29,42 @@
         \end{spacing}
     \end{frame}
 
-	\section{Testy Poprawności}
+    \begin{frame}
+        %\begin{centering}
+        \vspace{-1cm}
+        \begin{table}[H]
+            \caption{Tabela}
+            \label{tab:tabela}
+            \begin{tabular}{|l|c|c|c|c|}
+                \hline
+                Funkcja & Wynik & $n=1$ & $n=10$ & $n=100$ \\
+                \hline
+                $f(x,y) = 0 $ & 0 & 0 & 0 & 0 \\
+                &  & 0 & 0 & 0 \\
+                \hline
+                f(x,y) = & 0 & 0 & -3.46945e-18 & -1.30104e-18 \\
+                x+y &  & 0 & 3.46945e-18 & 1.30104e-18 \\
+                \hline
+                f(x,y) = & 2 & 2 & 2 & 2 \\
+                1 &  & 0 & 2.04281e-14 & 2.00817e-12 \\
+                \hline
+                f(x,y) = & 2 & 2 & 2 & 2 \\
+                x+y+1 &  & 0 & 2.44249e-15 & 2.66454e-15 \\
+                \hline
+                f(x,y) = & 3.24 & 3.24 & 3.24 & 3.24 \\
+                pi*x+2.72*y+1.62 &  & 4.44089e-16 & 4.44089e-16 & 8.88178e-16 \\
+                \hline
+                f(x,y) = & 4.44089e-16 & 4.44089e-16 & 4.44008e-16 & 4.44096e-16 \\
+                0.05*x+0.01*y+eps &  & 0 & 8.13152e-20 & 7.19978e-21 \\
+                \hline
+            \end{tabular}
+
+        \end{table}
+        \hfill
+        %\end{centering}
+    \end{frame}
+
+	%\section{Testy Poprawności}
 	\begin{frame}
 		\frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
 
@@ -43,7 +79,6 @@
         \end{spacing}
 
 	\end{frame}
-
 
     \begin{frame}
         \frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
@@ -73,7 +108,6 @@
         \begin{center}
             Ostatecznie otrzymujemy $ I = I_1 + I_2 = 2c $
         \end{center}
-
     \end{frame}
 
 \end{document}

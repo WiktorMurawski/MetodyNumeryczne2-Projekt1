@@ -7,7 +7,7 @@ function q = P1Z23_WMU_DoubleIntegralOnSquare(f,n)
 % poprzez podział obszaru na 4n^2 trójkątów przystających i zastosowanie na
 % każdym z nich kwadratury Gaussa rzędu drugiego
 % Funkcja przyjmuje dwa argumenty:
-% f - uchwyt do funkcji
+% f - uchwyt do funkcji podcałkowej
 % n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
 % będzie obszar; obszar dzielony jest na 4n^2 trójkątów
 
@@ -18,24 +18,16 @@ if(nargin < 1)
   f = @(x,y) 0;
 end
 
-% Inicjalizacja wartości całki
-q = 0;
-
-figure(1);clf;
-fill([1,0,-1,0],[0,1,0,-1],'r','FaceAlpha',0.2);
-hold on;
-grid on;
-xlim([-1,1]);
-ylim([-1,1]);
-
-
+q = 0; % Inicjalizacja wartości całki
 for x = 0:n-1
-  for y = 0:n-x-1
-    % Współrzędne wierzchołków trójkątów w ćwiartce pierwszej
+  r = 1;
+  for y = [repelem(0:n-x-2,2) n-x-1]
+    r = not(r);
+    % Wyznaczamy współrzędne wierzchołków trójkątów w ćwiartce pierwszej
     % W pierwszej kolumnie przechowywane są kolejno x1,x2,x3
     % W drugiej kolumnie przechowywane są kolejno y1,y2,y3
     vertices = [
-      x/n, y/n;
+      (x+r)/n, (y+r)/n;
       (x+1)/n, y/n;
       x/n, (y+1)/n; 
       ];
@@ -53,31 +45,8 @@ for x = 0:n-1
       t = triangles{k};
       q = q + QuadratureSW(f, ...
         t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
-    end
+    end % for k
   end % for y
-
-  for y = 0:n-x-2
-    vertices = [
-      (x+1)/n, (y+1)/n;
-      (x+1)/n, y/n;
-      x/n, (y+1)/n; 
-      ];
-
-    triangles = {
-      vertices; % I ćwiartka
-      [-vertices(:,1), vertices(:,2)]; % II ćwiartka
-      [-vertices(:,1), -vertices(:,2)]; % III ćwiartka
-      [vertices(:,1), -vertices(:,2)]; % IV ćwiartka
-      };
-
-    for k = 1:length(triangles)
-      t = triangles{k};
-      q = q + QuadratureSW(f, ...
-        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
-    end
-  end % for y
-
-
 end % for x
 
-end
+end % function

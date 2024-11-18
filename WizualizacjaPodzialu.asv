@@ -1,29 +1,20 @@
 function [] = WizualizacjaPodzialu(n)
-% Projekt 1, Zadanie 23
-% Wiktor Murawski
-%
-% Funkcja przyjmuje jeden argument:
-% n,- liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
-% będzie obszar; obszar dzielony jest na 4n^2 trójkątów
 
-% Tworzymy figurę
 figure(1);
-clf(1);
+clf;
 hold on;
 grid on;
 xlim([-1,1]);
 ylim([-1,1]);
-% Rysujemy obszar D
 fill([1,0,-1,0],[0,1,0,-1],'r','FaceAlpha',0.2);
+
 
 for x = 0:n-1
   r = 1;
-  % Tworzymy wektor, po którym będziemy iterować
-  Y = [repelem(0:n-x-2,2) n-x-1];
+  Y = [repelem(0:n-x-2,2), n-x-1];
   for y = Y
     r = not(r);
-    % W zależności od r wyznaczamy współrzędne innych trójkątów dla tych
-    % samych wartości x i y
+    % W zależności od r wyzna
     % Dla r = 0 wierzchołek, przy którym kąt jest prosty, jest bliżej do
     % środka układu współrzędnych niż przeciwprostokątna
     % Dla r = 1 wierzchołek, przy którym kąt jest prosty, jest dalej od 
@@ -43,14 +34,13 @@ for x = 0:n-1
       [triangle(:,1), -triangle(:,2)]; % IV ćwiartka
       };
 
-    % Rysujemy trójkąty w 4 ćwiartkach i czekamy na input
     for k = 1:length(triangles)
       t = triangles{k};
       X = [t(1,1),t(2,1),t(3,1)];
       Y = [t(1,2),t(2,2),t(3,2)];
       fill(X,Y,'c','FaceAlpha',0.3);
       input('','s');
-    end % for k
+    end
   end % for y
 
 end % for x

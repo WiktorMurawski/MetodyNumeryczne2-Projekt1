@@ -1,12 +1,12 @@
-function [] = test1()
+function [] = numtest1()
 % Projekt 1, Zadanie 23
 % Wiktor Murawski, 333255
 %
-% Funkcja testująca poprawność zaimplementowanej metody
-% Funkcja testuje metodę na kilku funkcjach dwóch zmiennych stopnia <= 1
-% Funkcja porównuje wynik uzyskany za pomocą funkcji
+% Funkcja testująca własności numeryczne zaimplementowanej metody
+% Funkcja testuje metodę na kilku funkcjach dwóch zmiennych stopnia > 1
+% Funkcja porównuje wynik uzyskany za pomocą funkcji 
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
-% integral2) z wynikami uzyskanymi zaimplementowaną metodą
+% integral2) z wynikami uzyskanymi zaimplementowaną metodą 
 
 % Wartości n
 nValues = [1,5,10,50,100,500];
@@ -14,11 +14,12 @@ n = length(nValues);
 
 % Testowane funkcje
 functions = {
-  @(x,y) 1;
-  @(x,y) x+y+1;
-  @(x,y) x+2*y+3;
-  @(x,y) x+y+sqrt(2);
-  @(x,y) x+y+eps;
+  @(x,y) (x+y)^2;
+  @(x,y) sin(x) + cos(y);
+  @(x,y) sin(x*cos(y));
+  @(x,y) exp(x) - exp(y);
+  @(x,y) sqrt(x*y)
+  @(x,y) (x*y)/(2+x+y)
   };
 N = numel(functions);
 

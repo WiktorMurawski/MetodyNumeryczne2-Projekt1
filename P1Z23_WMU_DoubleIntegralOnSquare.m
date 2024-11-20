@@ -11,13 +11,14 @@ function q = P1Z23_WMU_DoubleIntegralOnSquare(f,n)
 % n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
 % będzie obszar; obszar dzielony jest na 4n^2 trójkątów
 
-if(nargin < 2)
+if nargin < 2
   n = 1;
 end
-if(nargin < 1)
+if nargin < 1
   f = @(x,y) 0;
 end
 
+P = 0.5/n/n;% Pole każdego z trójkątów
 q = 0; % Inicjalizacja wartości całki
 for x = 0:n-1
   r = 1;
@@ -43,8 +44,8 @@ for x = 0:n-1
     % Zastosowanie kwadratury na każdym z 4 trójkątów
     for k = 1:length(triangles)
       t = triangles{k};
-      q = q + QuadratureSW(f, ...
-        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2));
+      q = q+KwadraturaSW(f, ...
+        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2), P);
     end % for k
   end % for y
 end % for x

@@ -1,16 +1,23 @@
-function [] = WizualizacjaPodzialu(n)
+function [] = WizualizacjaPodzialu(n,wait)
 % Projekt 1, Zadanie 23
 % Wiktor Murawski
 %
-% Funkcja przyjmuje jeden argument:
-% n,- liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
+% Funkcja przyjmuje dwa argumenty:
+% n - liczba całkowita wyznaczająca ilość trójkątów, na jakie podzielony
 % będzie obszar; obszar dzielony jest na 4n^2 trójkątów
+% wait - 0 lub 1, domyślna wartość: 0, jeśli wait = 1, to przed
+% narysowaniem kolejnego trójkąta program czeka na znak z klawiatury
+
+if nargin < 2
+  wait = 0;
+end
 
 % Tworzymy figurę
 figure(1);
 clf(1);
 hold on;
 grid on;
+axis equal
 xlim([-1,1]);
 ylim([-1,1]);
 % Rysujemy obszar D
@@ -25,7 +32,7 @@ for x = 0:n-1
     % W zależności od r wyznaczamy współrzędne innych trójkątów dla tych
     % samych wartości x i y
     % Dla r = 0 wierzchołek, przy którym kąt jest prosty, jest bliżej do
-    % środka układu współrzędnych niż przeciwprostokątna
+    % środka układu współrzędnych niż przeciwprosto`kątna
     % Dla r = 1 wierzchołek, przy którym kąt jest prosty, jest dalej od 
     % (środka układu współrzędnych niż przeciwprostokątna
     triangle = [
@@ -49,7 +56,9 @@ for x = 0:n-1
       X = [t(1,1),t(2,1),t(3,1)];
       Y = [t(1,2),t(2,2),t(3,2)];
       fill(X,Y,'c','FaceAlpha',0.3);
-      input('','s');
+      if(wait == 1)
+        pause();
+      end
     end % for k
   end % for y
 

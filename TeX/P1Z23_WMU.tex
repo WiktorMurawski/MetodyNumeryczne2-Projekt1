@@ -7,6 +7,16 @@
 \usepackage[T1]{fontenc}
 \usepackage{setspace}
 \usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{dcolumn}
+
+\sisetup{
+    table-number-alignment = center, % Align numbers at the decimal point
+    table-format = 1.3e2,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
+    tight-spacing = true,           % Remove extra spacing around numbers
+}
+
+\newcolumntype{M}{>{\centering\arraybackslash\math}p{2cm}}
 
 \newcommand{\n}{\newline}
 
@@ -29,61 +39,25 @@
         \end{spacing}
     \end{frame}
 
-    \begin{frame}
-        %\begin{centering}
-        \vspace{-1cm}
-        \begin{table}[H]
-            \caption{Tabela}
-            \label{tab:tabela}
-            \begin{tabular}{|l|c|c|c|c|}
-                \hline
-                Funkcja & Wynik & $n=1$ & $n=10$ & $n=100$ \\
-                \hline
-                $f(x,y) = 0 $ & 0 & 0 & 0 & 0 \\
-                &  & 0 & 0 & 0 \\
-                \hline
-                f(x,y) = & 0 & 0 & -3.46945e-18 & -1.30104e-18 \\
-                x+y &  & 0 & 3.46945e-18 & 1.30104e-18 \\
-                \hline
-                f(x,y) = & 2 & 2 & 2 & 2 \\
-                1 &  & 0 & 2.04281e-14 & 2.00817e-12 \\
-                \hline
-                f(x,y) = & 2 & 2 & 2 & 2 \\
-                x+y+1 &  & 0 & 2.44249e-15 & 2.66454e-15 \\
-                \hline
-                f(x,y) = & 3.24 & 3.24 & 3.24 & 3.24 \\
-                pi*x+2.72*y+1.62 &  & 4.44089e-16 & 4.44089e-16 & 8.88178e-16 \\
-                \hline
-                f(x,y) = & 4.44089e-16 & 4.44089e-16 & 4.44008e-16 & 4.44096e-16 \\
-                0.05*x+0.01*y+eps &  & 0 & 8.13152e-20 & 7.19978e-21 \\
-                \hline
-            \end{tabular}
-
-        \end{table}
-        \hfill
-        %\end{centering}
-    \end{frame}
-
-	%\section{Testy Poprawności}
 	\begin{frame}
-		\frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
+    \frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
 
         \begin{spacing}{2}
-        Obliczymy analitycznie $ I = \iint\limits_D f(x,y) \, dx dy $ gdzie
-        $ f(x,y) = ax + by + c \qquad a,b,c \in \mathbb{R}$ \n
-        Niech $ D_1 = \{(x,y) \in D : x \leq 0\} $ oraz $ D_2 = \{(x,y) \in D : x > 0\} $ \n
-        Oznaczmy $ I_1 = \iint\limits_{D_1} f(x,y) \, dx dy $, $ I_2 = \iint\limits_{D_2} f(x,y) \, dx dy $ \n
-        Wtedy $ D = D_1 \cup D_2 $ oraz $ I = I_1 + I_2 $ \n
-        $ I_1 = \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \, dy dx $ \qquad\n
-        $ I_2 = \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \, dy dx $ \n
+            Obliczymy analitycznie $ I = \iint\limits_D f(x,y) \, dx dy $ gdzie
+            $ f(x,y) = ax + by + c \qquad a,b,c \in \mathbb{R}$ \n
+            Niech $ D_1 = \{(x,y) \in D : x \leq 0\} $ oraz $ D_2 = \{(x,y) \in D : x > 0\} $ \n
+            Oznaczmy $ I_1 = \iint\limits_{D_1} f(x,y) \, dx dy $, $ I_2 = \iint\limits_{D_2} f(x,y) \, dx dy $ \n
+            Wtedy $ D = D_1 \cup D_2 $ oraz $ I = I_1 + I_2 $ \n
+            $ I_1 = \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \, dy dx $ \qquad\n
+            $ I_2 = \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \, dy dx $ \n
         \end{spacing}
 
-	\end{frame}
+    \end{frame}
 
     \begin{frame}
         \frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
         \begin{columns}
-            \begin{column}{0.6\textwidth}
+            \begin{column}{0.5\textwidth}
                 % Lewa kolumna
                 \begin{align*}
                     I_1 &= \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \,dydx \\
@@ -93,7 +67,7 @@
                     I_1 &= -\frac{a}{3} + c \\
                 \end{align*}
             \end{column}
-            \begin{column}{0.6\textwidth}
+            \begin{column}{0.5\textwidth}
                 % Prawa kolumna
                 \begin{align*}
                     I_2 &= \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \,dydx \\
@@ -109,5 +83,66 @@
             Ostatecznie otrzymujemy $ I = I_1 + I_2 = 2c $
         \end{center}
     \end{frame}
+
+    \begin{frame}
+
+        \begin{table}[]
+            %\caption{Tabela}
+            %\label{tab:tabela}
+            \makebox[\linewidth]{
+
+            \begin{tabular}{|l|S|l|S|S|S|}
+
+                \hline
+                funkcja           & {wynik}      & {n}     & {wynik}     & {błąd}        & {błąd}    \\
+                podcałkowa            & {dokładny}   & {}      & {uzyskany}  & {bezwzględny} & {względny}  \\
+                \hline
+                $f(x,y) = 1 $   & 2.000e00 & 1   & 2.000e+00 & 1.000e-20 & 0.000e+00 \\
+                                &          & 5   & 2.000e+00 & 1.332e-15 & 6.661e-16 \\
+                                &          & 10  & 2.000e+00 & 2.065e-14 & 1.033e-14 \\
+                                &          & 50  & 2.000e+00 & 1.876e-13 & 9.381e-14 \\
+                                &          & 100 & 2.000e+00 & 2.008e-12 & 1.004e-12 \\
+                                &          & 500 & 2.000e+00 & 1.584e-11 & 7.918e-12 \\
+                \hline
+                %---------------------------------------------------------------------------
+                $f(x,y) = x+y+0.5$              & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00   & 0.000e+00 \\
+                              &   & 5     & 2.000e+00   & 8.882e-16   & 4.441e-16 \\
+                             &   & 10    & 2.000e+00   & 2.442e-15   & 1.221e-15 \\
+                             &   & 50    & 2.000e+00   & 4.663e-15   & 2.331e-15 \\
+                              &   & 100   & 2.000e+00   & 4.885e-15   & 2.442e-15 \\
+                              &   & 500   & 2.000e+00   & 7.594e-14   & 3.797e-14 \\
+                \hline
+                %---------------------------------------------------------------------------
+                $f(x,y) = x+2y+3$          & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+                            &   & 5     & 6.000e+00   & 0.000e+00   & 0.000e+00 \\
+                            &   & 10    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+                            &   & 50    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+                            &   & 100   & 6.000e+00   & 1.776e-15   & 2.961e-16 \\
+                            &   & 500   & 6.000e+00   & 2.665e-14   & 4.441e-15 \\
+                %---------------------------------------------------------------------------
+                %x+y+sqrt(2)        & 2.828e+00  & 1     & 2.828e+00   & 0.000e+00   & 0.000e+00 \\
+                %        & 2.828e+00  & 5     & 2.828e+00   & 8.882e-16   & 3.140e-16 \\
+                %        & 2.828e+00  & 10    & 2.828e+00   & 2.220e-15   & 7.850e-16 \\
+                %        & 2.828e+00  & 50    & 2.828e+00   & 5.329e-15   & 1.884e-15 \\
+                %        & 2.828e+00  & 100   & 2.828e+00   & 3.064e-14   & 1.083e-14 \\
+                %        & 2.828e+00  & 500   & 2.828e+00   & 1.554e-14   & 5.495e-15 \\
+                %---------------------------------------------------------------------------
+                %x+y+eps            & 4.441e-16  & 1     & 4.996e-16   & 5.551e-17   & 1.250e-01 \\
+                %x+y+eps            & 4.441e-16  & 5     & 4.441e-16   & 0.000e+00   & 0.000e+00 \\
+                %x+y+eps            & 4.441e-16  & 10    & 4.458e-16   & 1.735e-18   & 3.906e-03 \\
+                %x+y+eps            & 4.441e-16  & 50    & 4.460e-16   & 1.952e-18   & 4.395e-03 \\
+                %x+y+eps            & 4.441e-16  & 100   & 4.462e-16   & 2.107e-18   & 4.745e-03 \\
+                %x+y+eps            & 4.441e-16  & 500   & 4.426e-16   & 1.454e-18   & 3.275e-03 \\
+                \hline
+
+            \end{tabular}
+
+            }
+        \end{table}
+
+    \end{frame}
+
+	%\section{Testy Poprawności}
+
 
 \end{document}

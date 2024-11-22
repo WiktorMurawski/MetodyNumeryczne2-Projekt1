@@ -16,8 +16,8 @@
 
 \sisetup{
     table-number-alignment = center, % Align numbers at the decimal point
-    table-format = 1.4e2,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
-    tight-spacing = true,           % Remove extra spacing around numbers
+    table-format = 1.3e3,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
+    tight-spacing = false,           % Remove extra spacing around numbers
 }
 
 \newcolumntype{M}{>{\centering\arraybackslash\math}p{2cm}}
@@ -94,11 +94,14 @@
 
 \begin{frame}
 	 \begin{spacing}{1.5}
-	Mając podział obszaru $D$ na $4n^2$ trójkątów przystających oraz kwadraturę drugiego rzędu na dowolnym trójkącie, możemy obliczyć całkę $$ I(f) = \iint\limits_D f(x,y)  \, dxdy $$ poprzez zastosowanie na każdym z kwadratów kwadratury rzędu drugiego.\\
+	Mając podział obszaru $D$ na $4n^2$ trójkątów przystających oraz kwadraturę drugiego rzędu na dowolnym trójkącie, możemy obliczyć całkę $$ I(f) = \iint\limits_D f(x,y)  \, dxdy $$ poprzez zastosowanie na każdym z trójkątów kwadratury rzędu drugiego.\\
 	
-	Zastosujemy kwadraturę $S_S$ na każdym z trójkątów, sumę wyników oznaczymy przez $S_S^{[n]}(f)$.\\
+	Stosując kwadraturę $S_S(f)$ na każdym z trójkątów, otrzymamy kwadraturę złożoną $S_S^{[n]}(f)$.\\
 	
-	
+	Spodziewamy się, że 
+	$$ S_S^{(n)} = I(f) $$ 
+	$$ S_S^{(n)} \approx I(f) $$	
+
 	\end{spacing}
 \end{frame}
 
@@ -220,7 +223,7 @@
                 \hline
                 %---------------------------------------------------------------------------
                 $f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00   & 0.000e+00 \\
-                $ = x+y+0.5$&   & 5     & 2.000e+00   & 8.882e-16   & 4.441e-16 \\
+                $ = x+y+1$&   & 5     & 2.000e+00   & 8.882e-16   & 4.441e-16 \\
                 &   & 10    & 2.000e+00   & 2.442e-15   & 1.221e-15 \\
                 &   & 50    & 2.000e+00   & 4.663e-15   & 2.331e-15 \\
                 &   & 100   & 2.000e+00   & 4.885e-15   & 2.442e-15 \\
@@ -240,14 +243,16 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle[short title]{Testy poprawności}
 	\begin{table}[]
 		%\caption{Tabela}
 		%\label{tab:tabela}
+		%\renewcommand{\arraystretch}{1.2}
 		\makebox[\linewidth]{
 			\begin{tabular}{|l|S|l|S|S|}
 				\hline
-				funkcja           & {wynik}      & {n}     & {wynik}     & {błąd}  \\
-				podcałkowa            & {dokładny}   & {}      & {uzyskany}  & {bezwzględny}   \\
+				& & & & \\[-1em]
+				{Funkcja $f$} & {$ I(f) $} & {$ n $} & {$ S_S^{[n]}(f) $}  & {$ | S_S^{[n]}(f) - I(f) | $}   \\
 				\hline
 				$f(x,y) = $   & 2.000e00 & 1   & 2.000e+00 & 1.000e-20  \\
 				$ = 1$ &          & 5   & 2.000e+00 & 1.332e-15  \\
@@ -257,20 +262,20 @@
 				&          & 500 & 2.000e+00 & 1.584e-11  \\
 				\hline
 				%---------------------------------------------------------------------------
-				$f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00  \\
-				$ = x+y+0.5$&   & 5     & 2.000e+00   & 8.882e-16  \\
-				&   & 10    & 2.000e+00   & 2.442e-15   & 1.221e-15 \\
-				&   & 50    & 2.000e+00   & 4.663e-15   & 2.331e-15 \\
-				&   & 100   & 2.000e+00   & 4.885e-15   & 2.442e-15 \\
-				&   & 500   & 2.000e+00   & 7.594e-14   & 3.797e-14 \\
+                $f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00  \\
+				$ = x+y+1$&   & 5     & 2.000e+00   & 8.882e-16   \\
+				&   & 10    & 2.000e+00   & 2.442e-15   \\
+				&   & 50    & 2.000e+00   & 4.663e-15   \\
+				&   & 100   & 2.000e+00   & 4.885e-15   \\
+				&   & 500   & 2.000e+00   & 7.594e-14   \\
 				\hline
 				%---------------------------------------------------------------------------
-				$f(x,y) =$  & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-				$ = x+2y+3$ &   & 5     & 6.000e+00   & 0.000e+00   & 0.000e+00 \\
-				&   & 10    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-				&   & 50    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-				&   & 100   & 6.000e+00   & 1.776e-15   & 2.961e-16 \\
-				&   & 500   & 6.000e+00   & 2.665e-14   & 4.441e-15 \\
+				$f(x,y) =$  & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16 \\   
+				$ = x+2y+3$ &   & 5     & 6.000e+00   & 0.000e+00  \\ 
+				&   & 10    & 6.000e+00   & 8.882e-16   \\
+				&   & 50    & 6.000e+00   & 8.882e-16   \\
+				&   & 100   & 6.000e+00   & 1.776e-15   \\
+				&   & 500   & 6.000e+00   & 2.665e-14   \\
 				\hline
 			\end{tabular}
 		}

@@ -17,6 +17,7 @@ n = length(nValues);
 % Testowane funkcje
 functions = {
   @(x,y) 1;
+  @(x,y) 0.999;
   @(x,y) x+y+1;
   @(x,y) x+2*y+3;
   @(x,y) x+y+sqrt(2);
@@ -30,11 +31,12 @@ results = zeros(N,n);
 
 for i = 1:N
   f = functions{i};
+  f_wrapped = @(x,y) arrayfun(f,x,y);
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
   fNames(i) = cleanName;
-  exactValues(i) = MatlabDoubleIntegralValue(f);
+  exactValues(i) = MatlabDoubleIntegralValue(f_wrapped);
   for j = 1:n
-    results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
+    results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f_wrapped,nValues(j));
   end
 end
 

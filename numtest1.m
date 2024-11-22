@@ -62,9 +62,9 @@ line = [repmat('-', 1, width), newline];
 fprintf("%s",line);
 
 fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","f(x,y) = ",...
-  "wynik","n","wynik","błąd","błąd");
+  "wynik z","n","wynik","błąd","błąd");
 fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","",...
-  "dokładny","","uzyskany","bezwzględny","względny");
+  "integral2","","uzyskany","bezwzględny","względny");
 fprintf("%s",line);
 for i = 1:length(results)
   fprintf("%-16s  %11.3e   %-3d  %11.3e  %11.3e  %11.3e\n",fNames(i),...

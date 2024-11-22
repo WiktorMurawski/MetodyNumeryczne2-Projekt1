@@ -16,10 +16,12 @@ end
 figure(1);
 clf(1);
 hold on;
-grid on;
+% grid on;
 axis equal
 xlim([-1,1]);
 ylim([-1,1]);
+xticks(-1:0.5:1)
+yticks(-1:0.5:1)
 % Rysujemy obszar D
 fill([1,0,-1,0],[0,1,0,-1],'r','FaceAlpha',0.2);
 
@@ -36,18 +38,18 @@ for x = 0:n-1
     % Dla r = 1 wierzchołek, przy którym kąt jest prosty, jest dalej od 
     % (środka układu współrzędnych niż przeciwprostokątna
     triangle = [
-      (x+r)/n, (y+r)/n;
-      (x+1)/n, y/n;
-      x/n, (y+1)/n;
+      (x+r)/n,(y+r)/n;
+      (x+1)/n,y/n;
+      x/n,(y+1)/n;
       ];
 
     % Korzystając z symetrii względem odpowiednich osi wyznaczamy
     % współrzędne wierzchołków w pozostałych ćwiartkach
     triangles = {
       triangle; % I ćwiartka
-      [-triangle(:,1), triangle(:,2)]; % II ćwiartka
-      [-triangle(:,1), -triangle(:,2)]; % III ćwiartka
-      [triangle(:,1), -triangle(:,2)]; % IV ćwiartka
+      [-triangle(:,1),triangle(:,2)]; % II ćwiartka
+      [-triangle(:,1),-triangle(:,2)]; % III ćwiartka
+      [triangle(:,1),-triangle(:,2)]; % IV ćwiartka
       };
 
     % Rysujemy trójkąty w 4 ćwiartkach i czekamy na input

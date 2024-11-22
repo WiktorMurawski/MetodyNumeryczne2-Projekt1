@@ -28,24 +28,23 @@ for x = 0:n-1
     % W pierwszej kolumnie przechowywane są kolejno x1,x2,x3
     % W drugiej kolumnie przechowywane są kolejno y1,y2,y3
     vertices = [
-      (x+r)/n, (y+r)/n;
-      (x+1)/n, y/n;
-      x/n, (y+1)/n; 
+      (x+r)/n,(y+r)/n;
+      (x+1)/n,y/n;
+      x/n,(y+1)/n; 
       ];
 
     % Przekład trójkątów na II, III i IV ćwiartkę
     triangles = {
       vertices; % I ćwiartka
-      [-vertices(:,1), vertices(:,2)]; % II ćwiartka
-      [-vertices(:,1), -vertices(:,2)]; % III ćwiartka
-      [vertices(:,1), -vertices(:,2)]; % IV ćwiartka
+      [-vertices(:,1),vertices(:,2)]; % II ćwiartka
+      [-vertices(:,1),-vertices(:,2)]; % III ćwiartka
+      [vertices(:,1),-vertices(:,2)]; % IV ćwiartka
       };
 
     % Zastosowanie kwadratury na każdym z 4 trójkątów
     for k = 1:length(triangles)
       t = triangles{k};
-      q = q+KwadraturaSW(f, ...
-        t(1,1), t(1,2), t(2,1), t(2,2), t(3,1), t(3,2), P);
+      q = q+QuadratureSW(f,t(1,1),t(1,2),t(2,1),t(2,2),t(3,1),t(3,2),P);
     end % for k
   end % for y
 end % for x

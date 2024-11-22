@@ -4,7 +4,7 @@ function q = MatlabDoubleIntegralValue(f,tol)
 %
 % Funkcja oblicza analitycznie dokładną wartość całki podwójnej z funkcji 
 % f na obszarze D za pomocą wbudowanej funkcji integral2
-% Funkcja przyjmuje dwa argumenty: 
+% Funkcja przyjmuje dwa argumenty:
 % f - uchwyt do funkcji podcałkowej
 % tol - tolerancja funkcji integral2
 % Obszar D jest dzielony na dwa trójkąty:
@@ -12,10 +12,10 @@ function q = MatlabDoubleIntegralValue(f,tol)
 % 2) prawy, ograniczony przez y = x-1, y = -x+1, x = 0
 
 % Obliczenie całki na lewym trójkącie
-qleft = integral2(f, -1, 0, @(x) -x-1, @(x) x+1,'AbsTol',tol);
+qleft = integral2(f,-1,0,@(x) -x-1,@(x) x+1,'AbsTol',tol);
 
 % Obliczenie całki na prawym trójkącie
-qright = integral2(f, 0, 1, @(x) x-1, @(x) -x+1,'AbsTol',tol);
+qright = integral2(f,0,1,@(x) x-1,@(x) -x+1,'AbsTol',tol);
 
 q = qleft + qright;
 

@@ -1,4 +1,4 @@
-function q = ExactIntegralValue(f)
+function q = SymDoubleIntegralValue(f)
 % Projekt 1, Zadanie 23
 % Wiktor Murawski, 333255
 %
@@ -12,8 +12,9 @@ function q = ExactIntegralValue(f)
 
 syms x y
 f = f(x, y);
-qleft = int(int(f,y,-x-1,x+1),-1,0);
-qright = int(int(f,y,x-1,-x+1),0,1);
-q = qleft+qright;
+% qleft = int(int(f,y,-x-1,x+1),-1,0);
+% qright = int(int(f,y,x-1,-x+1),0,1);
+% q = qleft+qright;
+q = int(int(f,y,abs(x)-1,-abs(x)+1),-1,1);
 
 end

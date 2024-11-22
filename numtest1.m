@@ -3,7 +3,8 @@ function [] = numtest1()
 % Wiktor Murawski, 333255
 %
 % Funkcja testująca własności numeryczne zaimplementowanej metody
-% Funkcja testuje metodę na kilku funkcjach dwóch zmiennych stopnia > 1
+% Funkcja testuje metodę na kilku funkcjach dwóch zmiennych, które nie są
+% wielomianami stopnia < 2
 % Funkcja porównuje wynik uzyskany za pomocą funkcji 
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
 % integral2) z wynikami uzyskanymi zaimplementowaną metodą 
@@ -14,12 +15,11 @@ n = length(nValues);
 
 % Testowane funkcje
 functions = {
-  @(x,y) (x+y)^2;
-  @(x,y) sin(x) + cos(y);
-  @(x,y) sin(x*cos(y));
-  @(x,y) exp(x) - exp(y);
-  @(x,y) sqrt(x*y)
-  @(x,y) (x*y)/(2+x+y)
+  @(x,y) (x+y).^2;
+  @(x,y) (x.*y)./(2+x+y);
+  @(x,y) sqrt(2*x.^2 + y.^2);
+  @(x,y) exp(x*y);
+
   };
 N = numel(functions);
 
@@ -31,7 +31,7 @@ for i = 1:N
   f = functions{i};
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
   fNames(i) = cleanName;
-  exactValues(i) = ExactIntegralValue(f);
+  exactValues(i) = ExactIntegralValue(f)
   for j = 1:n
     results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
   end

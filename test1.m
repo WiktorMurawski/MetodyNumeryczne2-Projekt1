@@ -3,10 +3,12 @@ function [] = test1()
 % Wiktor Murawski, 333255
 %
 % Funkcja testująca poprawność zaimplementowanej metody
-% Funkcja testuje metodę na kilku funkcjach dwóch zmiennych stopnia <= 1
+% Funkcja testuje metodę na kilku wielomianach dwóch zmiennych stopnia < 2
 % Funkcja porównuje wynik uzyskany za pomocą funkcji
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
 % integral2) z wynikami uzyskanymi zaimplementowaną metodą
+
+
 
 % Wartości n
 nValues = [1,5,10,50,100,500];
@@ -30,7 +32,7 @@ for i = 1:N
   f = functions{i};
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
   fNames(i) = cleanName;
-  exactValues(i) = ExactIntegralValue(f);
+  exactValues(i) = MatlabDoubleIntegralValue(f);
   for j = 1:n
     results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
   end

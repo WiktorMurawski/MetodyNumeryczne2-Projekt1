@@ -3,7 +3,7 @@
 \usefonttheme[onlymath]{serif}
 
 \usepackage[utf8]{inputenc}
-\usepackage[polish]{babel}
+%\usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{comment}
 \usepackage{setspace}
@@ -16,7 +16,7 @@
 
 \sisetup{
     table-number-alignment = center, % Align numbers at the decimal point
-    table-format = 1.3e2,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
+    table-format = 1.4e2,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
     tight-spacing = true,           % Remove extra spacing around numbers
 }
 
@@ -36,7 +36,7 @@
 \begin{frame}
     %\frametitle{\insertauthor,\space\inserttitle}
 
-    \begin{spacing}{2}
+    \begin{spacing}{1.75}
     \begin{center}
         \inserttitle\par
         \insertauthor
@@ -76,26 +76,53 @@
 
 
 \begin{frame}
-    TU MA BYĆ OPIS KWADRATURY
+    \frametitle{Formuła całkowa na trójkącie}
+    Niech $T$ będzie trójkątem o wierzchołkach $(x_1,y_1), (x_2,y_2), (x_3,y_3) \in \mathbb{R}^2$
+    Niech $P$ oznacza pole trójkąta $T$ oraz niech 
+    $$ A = \begin{pmatrix}
+    	1 & 1 & 1 \\
+    	x_1 & x_2 & x_3 \\
+    	y_1 & y_2 & y_3 \\
+    \end{pmatrix} $$
+    Wtedy $$P = \frac{1}{2}|\det{A}|$$
+    Niech $f : \mathbb{R}^2 \to \mathbb{R}$. Wówczas 
+    $$S_S(f) = P f \left(\frac{x_1+x_2+x_3}{3},\frac{y_1+y_2+y_3}{3} \right) $$
+    $$S_W(f) = \frac{P}{3} \Big( f(x_1,y_1) + f(x_2,y_2) + f(x_3,y_3) \Big)$$
+    Są kwadraturami rzędu 2-go.
+    
 \end{frame}
 
+\begin{frame}
+	 \begin{spacing}{1.5}
+	Mając podział obszaru $D$ na $4n^2$ trójkątów przystających oraz kwadraturę drugiego rzędu na dowolnym trójkącie, możemy obliczyć całkę $$ I(f) = \iint\limits_D f(x,y)  \, dxdy $$ poprzez zastosowanie na każdym z kwadratów kwadratury rzędu drugiego.\\
+	
+	Zastosujemy kwadraturę $S_S$ na każdym z trójkątów, sumę wyników oznaczymy przez $S_S^{[n]}(f)$.\\
+	
+	
+	\end{spacing}
+\end{frame}
 
 \begin{frame}
 \frametitle{Sprawdzanie poprawności}
 
-    \begin{spacing}{2}
-        W celu sprawdzenia poprawności metody przetestujemy ją na wielomianach stopnia pierwszego.
-        Obliczymy analitycznie $ I = \iint\limits_D f(x,y) \, dx dy $ gdzie
-        $ f(x,y) = ax + by + c \qquad a,b,c \in \mathbb{R}$ \n
-        Niech $ D_1 = \{(x,y) \in D : x \leq 0\} $ oraz $ D_2 = \{(x,y) \in D : x > 0\} $ \n
-        Oznaczmy $ I_1 = \iint\limits_{D_1} f(x,y) \, dx dy $, $ I_2 = \iint\limits_{D_2} f(x,y) \, dx dy $ \n
-        Wtedy $ D = D_1 \cup D_2 $ oraz $ I = I_1 + I_2 $ \n
-        $ I_1 = \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \, dy dx $ \qquad\n
-        $ I_2 = \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \, dy dx $ \n
+    \begin{spacing}{1}
+        W celu sprawdzenia poprawności metody przetestujemy ją na wielomianach dwóch zmiennych stopnia pierwszego.\par
+        Obliczymy analitycznie 
+        $$ I = \iint\limits_D f(x,y) \, dx dy $$ 
+        gdzie
+        $$ f(x,y) = ax + by + c \qquad a,b,c \in \mathbb{R}$$
+        Niech 
+        $$ D_1 = \{(x,y) \in D : x \leq 0\} $$ 
+        $$ D_2 = \{(x,y) \in D : x > 0\} $$ 
+        Oznaczmy 
+        $$ I_1 = \iint\limits_{D_1} f(x,y) \, dx dy $$ 
+        $$ I_2 = \iint\limits_{D_2} f(x,y) \, dx dy $$ 
+        Wtedy $ D = D_1 \cup D_2 $ oraz $ I = I_1 + I_2 $.
+        %$$ I_1 = \int\limits_{-1}^{0}\int\limits_{-x-1}^{x+1} ax+by+c \, dy dx $$
+        %$$ I_2 = \int\limits_{0}^{1}\int\limits_{x-1}^{-x+1} ax+by+c \, dy dx $$
     \end{spacing}
 
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Wyznaczenie analityczne całki z funkcji stopnia 1}
@@ -175,13 +202,11 @@
 
 
 \begin{frame}
-
     \begin{table}[]
         %\caption{Tabela}
         %\label{tab:tabela}
         \makebox[\linewidth]{
             \begin{tabular}{|l|S|l|S|S|S|}
-
                 \hline
                 funkcja           & {wynik}      & {n}     & {wynik}     & {błąd}        & {błąd}    \\
                 podcałkowa            & {dokładny}   & {}      & {uzyskany}  & {bezwzględny} & {względny}  \\
@@ -208,27 +233,48 @@
                 &   & 50    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
                 &   & 100   & 6.000e+00   & 1.776e-15   & 2.961e-16 \\
                 &   & 500   & 6.000e+00   & 2.665e-14   & 4.441e-15 \\
-                %---------------------------------------------------------------------------
-                %x+y+sqrt(2)        & 2.828e+00  & 1     & 2.828e+00   & 0.000e+00   & 0.000e+00 \\
-                %        & 2.828e+00  & 5     & 2.828e+00   & 8.882e-16   & 3.140e-16 \\
-                %        & 2.828e+00  & 10    & 2.828e+00   & 2.220e-15   & 7.850e-16 \\
-                %        & 2.828e+00  & 50    & 2.828e+00   & 5.329e-15   & 1.884e-15 \\
-                %        & 2.828e+00  & 100   & 2.828e+00   & 3.064e-14   & 1.083e-14 \\
-                %        & 2.828e+00  & 500   & 2.828e+00   & 1.554e-14   & 5.495e-15 \\
-                %---------------------------------------------------------------------------
-                %x+y+eps & 4.441e-16  & 1     & 4.996e-16   & 5.551e-17   & 1.250e-01 \\
-                %x+y+eps & 4.441e-16  & 5     & 4.441e-16   & 0.000e+00   & 0.000e+00 \\
-                %x+y+eps & 4.441e-16  & 10    & 4.458e-16   & 1.735e-18   & 3.906e-03 \\
-                %x+y+eps & 4.441e-16  & 50    & 4.460e-16   & 1.952e-18   & 4.395e-03 \\
-                %x+y+eps & 4.441e-16  & 100   & 4.462e-16   & 2.107e-18   & 4.745e-03 \\
-                %x+y+eps & 4.441e-16  & 500   & 4.426e-16   & 1.454e-18   & 3.275e-03 \\
                 \hline
-
             \end{tabular}
-
         }
     \end{table}
+\end{frame}
 
+\begin{frame}
+	\begin{table}[]
+		%\caption{Tabela}
+		%\label{tab:tabela}
+		\makebox[\linewidth]{
+			\begin{tabular}{|l|S|l|S|S|}
+				\hline
+				funkcja           & {wynik}      & {n}     & {wynik}     & {błąd}  \\
+				podcałkowa            & {dokładny}   & {}      & {uzyskany}  & {bezwzględny}   \\
+				\hline
+				$f(x,y) = $   & 2.000e00 & 1   & 2.000e+00 & 1.000e-20  \\
+				$ = 1$ &          & 5   & 2.000e+00 & 1.332e-15  \\
+				&          & 10  & 2.000e+00 & 2.065e-14  \\
+				&          & 50  & 2.000e+00 & 1.876e-13  \\
+				&          & 100 & 2.000e+00 & 2.008e-12  \\
+				&          & 500 & 2.000e+00 & 1.584e-11  \\
+				\hline
+				%---------------------------------------------------------------------------
+				$f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00  \\
+				$ = x+y+0.5$&   & 5     & 2.000e+00   & 8.882e-16  \\
+				&   & 10    & 2.000e+00   & 2.442e-15   & 1.221e-15 \\
+				&   & 50    & 2.000e+00   & 4.663e-15   & 2.331e-15 \\
+				&   & 100   & 2.000e+00   & 4.885e-15   & 2.442e-15 \\
+				&   & 500   & 2.000e+00   & 7.594e-14   & 3.797e-14 \\
+				\hline
+				%---------------------------------------------------------------------------
+				$f(x,y) =$  & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+				$ = x+2y+3$ &   & 5     & 6.000e+00   & 0.000e+00   & 0.000e+00 \\
+				&   & 10    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+				&   & 50    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
+				&   & 100   & 6.000e+00   & 1.776e-15   & 2.961e-16 \\
+				&   & 500   & 6.000e+00   & 2.665e-14   & 4.441e-15 \\
+				\hline
+			\end{tabular}
+		}
+	\end{table}
 \end{frame}
 
 \begin{frame}

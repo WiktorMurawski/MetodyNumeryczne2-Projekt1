@@ -71,16 +71,57 @@
 
 
 \begin{frame}
+	\frametitle{Algorytm podziału}
 	\begin{algorithmic}
-		\State $i \gets 10$
-		\If{$i\geq 5$} 
-		\State $i \gets i-1$
-		\Else
-		\If{$i\leq 3$}
-		\State $i \gets i+2$
-		\EndIf
-		\EndIf 
+		\For{$\mathtt{x = 0,1,2,...,n-1}$}
+			\State $\mathtt{r \gets 1}$
+			\For{$\mathtt{y = 0,0,1,1,...,n-x-2,n-x-2,n-x-1}$}
+				\State $\mathtt{r \gets !r}$
+				\State $\mathtt{(x_1,y_1) \gets (\dfrac{x+r}{n},\dfrac{y+r}{n})}$\\
+				\State $\mathtt{(x_2,y_2) \gets (\dfrac{x+1}{n},\dfrac{y}{n})}$\\
+				\State $\mathtt{(x_3,y_3) \gets (\dfrac{x}{n},\dfrac{y+1}{n})}$\\
+				\State $\texttt{Oblicz współrzędne trójkątów w II, III i IV ćwiartce}$
+				\vspace{0.5em}
+				\State $\texttt{Zastosuj kwadraturę na wyznaczonych trójkątach}$
+			\EndFor
+		\EndFor
 	\end{algorithmic}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Przykład działania algorytmu dla $n = 2$}
+	\vspace{-1.5cm}
+	\begin{columns}[T, onlytextwidth] % Create columns
+		\begin{column}{0.5\textwidth} % First column takes half the width
+			\begin{figure}
+				\centering
+				\includegraphics[width=\linewidth]{part1.pdf}
+			\end{figure}
+		\end{column}
+		
+		\begin{column}{0.5\textwidth} % Second column takes half the width
+			\begin{figure}
+				\centering
+				\includegraphics[width=\linewidth]{part2.pdf}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	\vspace{-3cm}
+	\begin{columns}[T, onlytextwidth] % Another set of columns
+		\begin{column}{0.5\textwidth} % Third column
+			\begin{figure}
+				\centering
+				\includegraphics[width=\linewidth]{part3.pdf}
+			\end{figure}
+		\end{column}
+		
+		\begin{column}{0.5\textwidth} % Fourth column
+			\begin{figure}
+				\centering
+				\includegraphics[width=\linewidth]{part4.pdf}
+			\end{figure}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 

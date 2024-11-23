@@ -1,0 +1,43 @@
+function [] = PlotError(f,n1,n2,step) 
+% Projekt 1, Zadanie 23
+% Wiktor Murawski, 333255
+%
+% Funkcja przyjmuje cztery argumenty:
+% f - uchwyt do funkcji dwóch zmiennych
+% n1 - najniższe n, dla którego wyznaczony zostanie błąd
+% n2 - najwyższe n, dla którego wyznaczony zostanie błąd
+% step - krok, co ile będzie zmieniać się n
+% Funkcja tworzy wykresy |S_S(f) - I(f)| oraz |S_W(f) - I(f)|, 
+% gdzie I(f) jest wartością całki podwójnej na D z f, a 
+% S_S(f) i S_W(f) są aproksymacjami całki podwójnej na D z f,
+% wyznaczonymi za pomocą kwadratur, odpowiednio S_S i S_W.
+% Dodatkowo wykreślana jest krzywa n^{-2}
+
+range = n1:step:n2;
+exactValue = MatlabDoubleIntegralValue(@(x,y) arrayfun(f,x,y));
+errSS = zeros(1,length(range));
+errSW = zeros(1,length(range));
+for i = 1:length(range)
+  n = range(i);
+  fprintf("n = %d\n",n);
+  errSS(i) = abs(exactValue - P1Z23_WMU_DoubleIntegralOnSquare(f,n));
+  errSW(i) = abs(exactValue - AltDoubleIntegralOnSquare(f,n));
+end % for i
+
+figure(1);
+clf;
+hold on;
+xlabel("n");
+legendObj = legend;
+legendObj.FontSize = 30;
+legendObj.LineWidth = 0.5;
+ax = gca;
+ax.FontSize = 20;
+plot(range,errSS,"DisplayName","|S_S^{[n]}(f) - I(f)|",...
+  'Color','g','LineWidth',2);
+plot(range,errSW,"DisplayName","|S_W^{[n]}(f) - I(f)|",...
+  'Color','r','LineWidth',2);
+plot(range,range.^(-2),"DisplayName","n^{-2}",...
+  'Color','b','LineWidth',2,'LineStyle','--');
+
+end % function

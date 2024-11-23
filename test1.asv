@@ -8,17 +8,29 @@ function [] = test1()
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
 % integral2) z wynikami uzyskanymi zaimplementowaną metodą
 
+fprintf("Program testujący poprawność metody.\n")
+fprintf("Wszystkie funkcje, na których testowana jest metoda,\n")
+fprintf("są postaci f(x,y) = ax + by + c, ")
+fprintf("gdzie a,b,c są rzeczywiste.\n")
+fprintf("Wynik dokładny całki podwójnej z f na D to zawsze 2c.\n")
+fprintf("Dla każdej funkcji f testowana jest metoda dla " + ...
+  "n = 1,5,10,50,100,500\n")
+fprintf("Po wypisaniu części wyników program czeka na dowolny zn.\n")
+fprintf("\n")
+
 % Wartości n
 nValues = [1,5,10,50,100,500];
 n = length(nValues);
 
+e = exp(1);
 % Testowane funkcje
 functions = {
   @(x,y) 1;
   @(x,y) x+y+1;
-  @(x,y) 2*x+4*y+1/2;
+  @(x,y) 8*x+2*y+1/2;
   @(x,y) x-y+sqrt(2);
   @(x,y) -x+2*y-pi;
+  @(x,y) pi*x - e*y;
   };
 N = numel(functions);
 
@@ -26,7 +38,9 @@ fNames = strings(N,1);
 exactValues = zeros(N,1);
 results = zeros(N,n);
 
+fprintf("Testowanie...")
 for i = 1:N
+  fprintf(".");
   f = functions{i};
   %f_wrapped = @(x,y) arrayfun(f,x,y);
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
@@ -60,7 +74,7 @@ relErr = relErr(:);
 
 width = 75;
 line = [repmat('-', 1, width), newline];
-fprintf("%s",line);
+fprintf("\n%s",line);
 
 fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","f(x,y) = ",...
   "wynik","n","wynik","błąd","błąd");
@@ -68,7 +82,7 @@ fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","",...
   "dokładny","","uzyskany","bezwzględny","względny");
 fprintf("%s",line);
 for i = 1:length(results)
-  fprintf("%-16s  %11.3e   %-3d  %11.3e  %11.3e  %11.3e\n",fNames(i),...
+  fprintf("%-16s  %12.4e  %-3d %12.4e %12.4e %12.4e\n",fNames(i),...
     exactValues(i),nValues(i),results(i),absErr(i),relErr(i));
   if 0 == mod(i,n)
     fprintf("%s",line);

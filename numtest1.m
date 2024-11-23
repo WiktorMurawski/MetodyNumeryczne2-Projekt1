@@ -15,11 +15,12 @@ n = length(nValues);
 
 % Testowane funkcje
 functions = {
-  @(x,y) (x+y).^2;
-  @(x,y) (x.*y)./(2+x+y);
-  @(x,y) sqrt(2*x.^2 + y.^2);
+  @(x,y) (x+y)^2;
+  @(x,y) (x+y)^3;
+  @(x,y) (x*y)/(2+x+y);
   @(x,y) exp(x*y);
-
+  @(x,y) sqrt(2*x^2 + y^2);
+  @(x,y) 1/sqrt(x^2 + y^2 + 1);
   };
 N = numel(functions);
 
@@ -31,7 +32,8 @@ for i = 1:N
   f = functions{i};
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
   fNames(i) = cleanName;
-  exactValues(i) = ExactIntegralValue(f)
+  f = @(x,y) arrayfun(f,x,y);
+  exactValues(i) = MatlabDoubleIntegralValue(f);
   for j = 1:n
     results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
   end
@@ -67,7 +69,7 @@ fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","",...
   "integral2","","uzyskany","bezwzględny","względny");
 fprintf("%s",line);
 for i = 1:length(results)
-  fprintf("%-16s  %11.3e   %-3d  %11.3e  %11.3e  %11.3e\n",fNames(i),...
+  fprintf("%-17s %11.3e   %-3d  %11.3e  %11.3e  %11.3e\n",fNames(i),...
     exactValues(i),nValues(i),results(i),absErr(i),relErr(i));
   if 0 == mod(i,n)
     fprintf("%s",line);

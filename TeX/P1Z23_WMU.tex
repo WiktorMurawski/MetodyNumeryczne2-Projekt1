@@ -16,8 +16,8 @@
 
 \sisetup{
     table-number-alignment = center, % Align numbers at the decimal point
-    table-format = 1.3e3,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
-    tight-spacing = false,           % Remove extra spacing around numbers
+    table-format = +1.4e3,           % Specify number format: 1 digit before, 3 after decimal, and 1 exponent
+    tight-spacing = true,           % Remove extra spacing around numbers
 }
 
 \newcolumntype{M}{>{\centering\arraybackslash\math}p{2cm}}
@@ -88,19 +88,21 @@
     Niech $f : \mathbb{R}^2 \to \mathbb{R}$. Wówczas 
     $$S_S(f) = P f \left(\frac{x_1+x_2+x_3}{3},\frac{y_1+y_2+y_3}{3} \right) $$
     $$S_W(f) = \frac{P}{3} \Big( f(x_1,y_1) + f(x_2,y_2) + f(x_3,y_3) \Big)$$
-    Są kwadraturami rzędu 2-go.
+    są kwadraturami rzędu 2-go.
     
 \end{frame}
 
 \begin{frame}
 	 \begin{spacing}{1.5}
-	Mając podział obszaru $D$ na $4n^2$ trójkątów przystających oraz kwadraturę drugiego rzędu na dowolnym trójkącie, możemy obliczyć całkę $$ I(f) = \iint\limits_D f(x,y)  \, dxdy $$ poprzez zastosowanie na każdym z trójkątów kwadratury rzędu drugiego.\\
+	Mając podział obszaru $ D $ na $4 n^2 $ trójkątów przystających oraz kwadraturę drugiego rzędu na dowolnym trójkącie, możemy obliczyć całkę $$ I(f) = \iint\limits_D f(x,y)  \, dxdy $$ poprzez zastosowanie na każdym z trójkątów kwadratury rzędu drugiego.\\
 	
-	Stosując kwadraturę $S_S(f)$ na każdym z trójkątów, otrzymamy kwadraturę złożoną $S_S^{[n]}(f)$.\\
+	Stosując kwadraturę $ S_S(f) $ na każdym z trójkątów, 
+	otrzymamy kwadraturę złożoną $ S_S^{[n]}(f) $.\\
 	
-	Spodziewamy się, że 
-	$$ S_S^{(n)} = I(f) $$ 
-	$$ S_S^{(n)} \approx I(f) $$	
+	Spodziewamy się, że dla dostatecznie dużego $ n $
+	$$ S_S^{[n]} \approx I(f) $$	
+	a dla wielomianów dwóch zmiennych stopnia $ < 2 $
+	$$ S_S^{[n]} = I(f) $$ 
 
 	\end{spacing}
 \end{frame}
@@ -157,125 +159,80 @@
     \end{center}
 \end{frame}
 
-\begin{comment}
 \begin{frame}
-    %\begin{table}[]
-        \makebox[\textwidth]{
-            \begin{tabularx}{11.22cm}{|l|l|l|l|l|l|}
-                \hline
-                Funkcja & Wartość z integral2 & n & Wartość & Błąd & Błąd\\
-                podcałkowa & integral2 &  & obliczona & bezwzględny & względny\\
-                \hline
-            \end{tabularx}
-        }
-        \makebox[\textwidth]{
-            \begin{tabularx}{\textwidth}{
-                    |l
-                    |S
-                    |l
-                    |S
-                    |S
-                    |S|}
-                \hline
-                Text1 & 1.234e+56 & 123 & 5.678e+12 & 9.876e+34 & 1.234e+56 \\
-                Text2 & 9.876e+45 & 456 & 7.123e+23 & 4.567e+67 & 8.901e+45 \\
-                Text3 & 2.345e+67 & 789 & 1.234e+89 & 3.456e+12 & 6.789e+67 \\
-                \hline
-            \end{tabularx}
-        }
-    %\end{table}
-\end{frame}
-
-\begin{frame}
-    \begin{table}[]
-        \caption{Tabela}
-        \label{tab:tabela}
-        \makebox[\textwidth]{
-            \begin{tabular}{|l|l|l|l|l|l|}
-                \hline
-                Funkcja & Wartość z integral2 & n & Wartość & Błąd & Błąd\\
-                podcałkowa & integral2 &  & obliczona & bezwzględny & względny\\
-                \hline
-            \end{tabular}
-        }
-    \end{table}
-\end{frame}
-\end{comment}
-
-
-
-\begin{frame}
-    \begin{table}[]
-        %\caption{Tabela}
-        %\label{tab:tabela}
-        \makebox[\linewidth]{
-            \begin{tabular}{|l|S|l|S|S|S|}
-                \hline
-                funkcja           & {wynik}      & {n}     & {wynik}     & {błąd}        & {błąd}    \\
-                podcałkowa            & {dokładny}   & {}      & {uzyskany}  & {bezwzględny} & {względny}  \\
-                \hline
-                $f(x,y) = $   & 2.000e00 & 1   & 2.000e+00 & 1.000e-20 & 0.000e+00 \\
-                $ = 1$ &          & 5   & 2.000e+00 & 1.332e-15 & 6.661e-16 \\
-                &          & 10  & 2.000e+00 & 2.065e-14 & 1.033e-14 \\
-                &          & 50  & 2.000e+00 & 1.876e-13 & 9.381e-14 \\
-                &          & 100 & 2.000e+00 & 2.008e-12 & 1.004e-12 \\
-                &          & 500 & 2.000e+00 & 1.584e-11 & 7.918e-12 \\
-                \hline
-                %---------------------------------------------------------------------------
-                $f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00   & 0.000e+00 \\
-                $ = x+y+1$&   & 5     & 2.000e+00   & 8.882e-16   & 4.441e-16 \\
-                &   & 10    & 2.000e+00   & 2.442e-15   & 1.221e-15 \\
-                &   & 50    & 2.000e+00   & 4.663e-15   & 2.331e-15 \\
-                &   & 100   & 2.000e+00   & 4.885e-15   & 2.442e-15 \\
-                &   & 500   & 2.000e+00   & 7.594e-14   & 3.797e-14 \\
-                \hline
-                %---------------------------------------------------------------------------
-                $f(x,y) =$  & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-                $ = x+2y+3$ &   & 5     & 6.000e+00   & 0.000e+00   & 0.000e+00 \\
-                &   & 10    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-                &   & 50    & 6.000e+00   & 8.882e-16   & 1.480e-16 \\
-                &   & 100   & 6.000e+00   & 1.776e-15   & 2.961e-16 \\
-                &   & 500   & 6.000e+00   & 2.665e-14   & 4.441e-15 \\
-                \hline
-            \end{tabular}
-        }
-    \end{table}
-\end{frame}
-
-\begin{frame}
-	\frametitle[short title]{Testy poprawności}
+	\frametitle{Testy poprawności}
 	\begin{table}[]
-		%\caption{Tabela}
-		%\label{tab:tabela}
-		%\renewcommand{\arraystretch}{1.2}
 		\makebox[\linewidth]{
 			\begin{tabular}{|l|S|l|S|S|}
-				\hline
-				& & & & \\[-1em]
-				{Funkcja $f$} & {$ I(f) $} & {$ n $} & {$ S_S^{[n]}(f) $}  & {$ | S_S^{[n]}(f) - I(f) | $}   \\
-				\hline
-				$f(x,y) = $   & 2.000e00 & 1   & 2.000e+00 & 1.000e-20  \\
-				$ = 1$ &          & 5   & 2.000e+00 & 1.332e-15  \\
-				&          & 10  & 2.000e+00 & 2.065e-14  \\
-				&          & 50  & 2.000e+00 & 1.876e-13  \\
-				&          & 100 & 2.000e+00 & 2.008e-12  \\
-				&          & 500 & 2.000e+00 & 1.584e-11  \\
-				\hline
+				\hline & & & & \\[-1em]
+				Funkcja $f$  & {$ I(f) $} &{$n$}& {$S_S^{[n]}(f)$} & {$|S_S^{[n]}(f) - I(f)|$}\\
+				\hline & & & &\\[-1em]
+				%---------------------------------------------------------------------------				
+$f(x,y) = $                  & 2.0000e+00 & 1   & 2.0000e+00 & 0.0000e+00 \\%0.0000e+00
+$ 1 $                      &            & 5   & 2.0000e+00 & 1.3323e-15 \\%6.6613e-16
+				             &            & 10  & 2.0000e+00 & 2.0650e-14 \\%1.0325e-14
+				             &            & 50  & 2.0000e+00 & 1.8763e-13 \\%9.3814e-14
+				             &            & 100 & 2.0000e+00 & 2.0082e-12 \\%1.0041e-12
+			                 &            & 500 & 2.0000e+00 & 1.5836e-11 \\%7.9181e-12
 				%---------------------------------------------------------------------------
-                $f(x,y) = $ & 2.000e+00  & 1     & 2.000e+00   & 0.000e+00  \\
-				$ = x+y+1$&   & 5     & 2.000e+00   & 8.882e-16   \\
-				&   & 10    & 2.000e+00   & 2.442e-15   \\
-				&   & 50    & 2.000e+00   & 4.663e-15   \\
-				&   & 100   & 2.000e+00   & 4.885e-15   \\
-				&   & 500   & 2.000e+00   & 7.594e-14   \\
-				\hline
+				\hline & & & &\\[-1em]
 				%---------------------------------------------------------------------------
-				$f(x,y) =$  & 6.000e+00  & 1     & 6.000e+00   & 8.882e-16 \\   
-				$ = x+2y+3$ &   & 5     & 6.000e+00   & 0.000e+00  \\ 
-				&   & 10    & 6.000e+00   & 8.882e-16   \\
-				&   & 50    & 6.000e+00   & 8.882e-16   \\
-				&   & 100   & 6.000e+00   & 1.776e-15   \\
-				&   & 500   & 6.000e+00   & 2.665e-14   \\
+$f(x,y) = $                  & 2.0000e+00 & 1   & 2.0000e+00 & 0.0000e+00 \\%0.0000e+00
+$ x + y + 1 $                &            & 5   & 2.0000e+00 & 8.8818e-16 \\%4.4409e-16
+				             &            & 10  & 2.0000e+00 & 2.4425e-15 \\%1.2212e-15
+				             &            & 50  & 2.0000e+00 & 4.6629e-15 \\%2.3315e-15
+				             &            & 100 & 2.0000e+00 & 4.8850e-15 \\%2.4425e-15
+				             &            & 500 & 2.0000e+00 & 7.5939e-14 \\%3.7970e-14
+				%---------------------------------------------------------------------------
+				\hline & & & &\\[-1em]
+$f(x,y) = $                  & 1.0000e+00 & 1   & 1.0000e+00 & 0.0000e+00 \\%0.0000e+00
+$ 8x+2y+\frac{1}{2}$         &            & 5   & 1.0000e+00 & 5.5511e-16 \\%5.5511e-16
+			                 &            & 10  & 1.0000e+00 & 2.2204e-16 \\%2.2204e-16
+		                     &            & 50  & 1.0000e+00 & 1.1102e-15 \\%1.1102e-15
+			                 &            & 100 & 1.0000e+00 & 1.7764e-15 \\%1.7764e-15
+			                 &            & 500 & 1.0000e+00 & 8.2157e-15 \\%8.2157e-15
+				\hline
+			\end{tabular}
+		}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Testy poprawności}
+	\begin{table}[]
+		\makebox[\linewidth]{
+			\begin{tabular}{|l|S|l|S|S|}
+				\hline & & & & \\[-1em]
+				Funkcja $f$  & {$ I(f) $} &{$n$}& {$S_S^{[n]}(f)$} & {$|S_S^{[n]}(f) - I(f)|$}\\
+				\hline & & & &\\[-1em]
+				%---------------------------------------------------------------------------				
+$ f(x,y) = $                 &  2.8284e+00 & 1   &  2.8284e+00 & 0.0000e+00 \\%0.0000e+00  
+$ x-y+\sqrt2$              &             & 5   &  2.8284e+00 & 1.3323e-15 \\%4.7103e-16  
+                             &             & 10  &  2.8284e+00 & 1.7764e-15 \\%6.2804e-16  
+                             &             & 50  &  2.8284e+00 & 5.3291e-15 \\%1.8841e-15  
+                             &             & 100 &  2.8284e+00 & 3.0198e-14 \\%1.0677e-14  
+                             &             & 500 &  2.8284e+00 & 1.5543e-14 \\%5.4953e-15  
+
+				%---------------------------------------------------------------------------
+				\hline & & & &\\[-1em]
+				%---------------------------------------------------------------------------
+$ f(x,y) = $                 & -6.2832e+00 & 1   & -6.2832e+00 & 0.0000e+00 \\%-0.0000e+00  
+$ -x + 2y - \pi $          &             & 5   & -6.2832e+00 & 8.8818e-16 \\%-1.4136e-16  
+                             &             & 10  & -6.2832e+00 & 0.0000e+00 \\%-0.0000e+00  
+                             &             & 50  & -6.2832e+00 & 3.5527e-15 \\%-5.6543e-16  
+                             &             & 100 & -6.2832e+00 & 4.4409e-15 \\%-7.0679e-16  
+                             &             & 500 & -6.2832e+00 & 3.5527e-14 \\%-5.6543e-15  
+
+
+				%---------------------------------------------------------------------------
+				\hline & & & &\\[-1em]
+$ f(x,y) = $                 &  0.0000e+00 & 1   &  0.0000e+00 & 0.0000e+00 \\%NaN  
+$ \pi x - ey $               &             & 5   &  1.3878e-17 & 1.3878e-17 \\%Inf  
+                             &             & 10  & -6.9389e-18 & 6.9389e-18 \\%Inf  
+                             &             & 50  &  9.7578e-19 & 9.7578e-19 \\%Inf  
+                             &             & 100 &  1.3281e-18 & 1.3281e-18 \\%Inf  
+                             &             & 500 &  7.9028e-19 & 7.9028e-19 \\%Inf  
+
 				\hline
 			\end{tabular}
 		}

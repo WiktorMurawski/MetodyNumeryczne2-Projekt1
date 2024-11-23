@@ -3,7 +3,7 @@ function q = P1Z23_WMU_DoubleIntegralOnSquare(f,n)
 % Wiktor Murawski, 333255
 %
 % Funkcja P1Z23_WMU_DoubleIntegralOnSquare wyznacza przybliżenie całki
-% podwójnej z funkcji f(x,y) na obszarze D = {(x,y):|x|+|y|<= 1}
+% podwójnej z funkcji f(x,y) na obszarze D = {(x,y):|x|+|y|<=1}
 % poprzez podział obszaru na 4n^2 trójkątów przystających i zastosowanie na
 % każdym z nich kwadratury rzędu drugiego
 % Funkcja przyjmuje dwa argumenty:

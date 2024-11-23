@@ -6,13 +6,13 @@ function q = MatlabDoubleIntegralValue(f,tol)
 % za pomocą wbudowanej funkcji integral2
 % Funkcja przyjmuje dwa argumenty:
 % f - uchwyt do funkcji podcałkowej
-% tol - tolerancja funkcji integral2, domyślnie tol = 1e-16
+% tol - tolerancja funkcji integral2, domyślnie tol = 1e-15
 % Obszar D jest dzielony na dwa trójkąty:
 % 1) lewy, ograniczony przez y = -x-1, y = x+1, x = 0
 % 2) prawy, ograniczony przez y = x-1, y = -x+1, x = 0
 
 if nargin < 2
-  tol = 1e-16;
+  tol = 1e-15;
 end
 
 % Obliczenie całki na lewym trójkącie

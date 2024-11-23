@@ -8,7 +8,7 @@ function [] = test1()
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
 % integral2) z wynikami uzyskanymi zaimplementowaną metodą
 
-
+e = exp(1);
 
 % Wartości n
 nValues = [1,5,10,50,100,500];
@@ -17,11 +17,11 @@ n = length(nValues);
 % Testowane funkcje
 functions = {
   @(x,y) 1;
-  @(x,y) 0.999;
   @(x,y) x+y+1;
-  @(x,y) x+2*y+3;
-  @(x,y) x+y+sqrt(2);
-  @(x,y) x+y+eps;
+  @(x,y) 8*x+2*y+1/2;
+  @(x,y) x-y+sqrt(2);
+  @(x,y) -x+2*y-pi;
+  @(x,y) pi*x - e*y;
   };
 N = numel(functions);
 
@@ -31,12 +31,13 @@ results = zeros(N,n);
 
 for i = 1:N
   f = functions{i};
-  f_wrapped = @(x,y) arrayfun(f,x,y);
+  %f_wrapped = @(x,y) arrayfun(f,x,y);
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
   fNames(i) = cleanName;
-  exactValues(i) = MatlabDoubleIntegralValue(f_wrapped);
+  %exactValues(i) = MatlabDoubleIntegralValue(f_wrapped);
+  exactValues(i) = 2*f(0,0);
   for j = 1:n
-    results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f_wrapped,nValues(j));
+    results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
   end
 end
 
@@ -70,7 +71,7 @@ fprintf("%-18s  %-11s %-5s  %-11s  %-11s  %-11s\n","",...
   "dokładny","","uzyskany","bezwzględny","względny");
 fprintf("%s",line);
 for i = 1:length(results)
-  fprintf("%-16s  %11.3e   %-3d  %11.3e  %11.3e  %11.3e\n",fNames(i),...
+  fprintf("%-16s  %12.4e  %-3d %12.4e %12.4e %12.4e\n",fNames(i),...
     exactValues(i),nValues(i),results(i),absErr(i),relErr(i));
   if 0 == mod(i,n)
     fprintf("%s",line);

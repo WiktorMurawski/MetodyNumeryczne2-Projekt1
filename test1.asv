@@ -8,20 +8,17 @@ function [] = test1()
 % MatlabDoubleIntegralValue (która wykorzystuje wbudowaną funkcję
 % integral2) z wynikami uzyskanymi zaimplementowaną metodą
 
-
-
 % Wartości n
 nValues = [1,5,10,50,100,500];
 n = length(nValues);
 
 % Testowane funkcje
 functions = {
-  @(x,y) ;
-  @(x,y) 1-eps;
+  @(x,y) 1;
   @(x,y) x+y+1;
-  @(x,y) x+2.*y+3;
-  @(x,y) x+y+sqrt(2);
-  @(x,y) x+y+eps;
+  @(x,y) 2*x+4*y+1/2;
+  @(x,y) x-y+sqrt(2);
+  @(x,y) -x+2*y-pi;
   };
 N = numel(functions);
 
@@ -31,9 +28,11 @@ results = zeros(N,n);
 
 for i = 1:N
   f = functions{i};
+  %f_wrapped = @(x,y) arrayfun(f,x,y);
   cleanName = regexprep(func2str(f), '^@\([^\)]*\)\s*', '');
-  fNames(i) = cleanName
-  exactValues(i) = MatlabDoubleIntegralValue(f);
+  fNames(i) = cleanName;
+  %exactValues(i) = MatlabDoubleIntegralValue(f_wrapped);
+  exactValues(i) = 2*f(0,0);
   for j = 1:n
     results(i,j) = P1Z23_WMU_DoubleIntegralOnSquare(f,nValues(j));
   end
